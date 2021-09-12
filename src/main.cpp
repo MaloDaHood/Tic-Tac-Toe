@@ -4,10 +4,11 @@ int main()
 {
     // scores[0]=X's score && scores[1]=O's score
     std::array<int, 2> scores {0, 0};
+    std::array<char, 2> letters {Game::init()};
     do  // Loops while the user wants to keep playing
     {
-        Game game(scores);
-        char player {'X'}; // Current player
+        Game game(scores, letters);
+        char player {game.getPlayer()}; // Current player
         while(!game.checkEnd()) // Main game loop
         {
             Game::clear();
@@ -24,7 +25,7 @@ int main()
                     valid=true; 
             }while(!valid||!game.setCase(place-1, player));
             game.increaseTurns();
-            if(player=='X')player='O';else player='X'; // Switches current player at the end of each turn 
+            player=game.getPlayer();
         }
         scores=game.getScoreArray(); // Saves m_scores before it's reset 
     } while(Game::keepPlaying());

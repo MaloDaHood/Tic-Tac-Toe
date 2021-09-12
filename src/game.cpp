@@ -1,8 +1,9 @@
 #include "../include/game.hpp"
 
-Game::Game(std::array<int, 2> const &scores) // Constructor
+Game::Game(std::array<int, 2> const &scores, std::array<char, 2> const &letters) // Constructor
 {
     m_scores=scores;
+    m_letters=letters;
 }
 
 bool Game::checkEnd() // Returns true if the game is over or false if it's not
@@ -10,6 +11,13 @@ bool Game::checkEnd() // Returns true if the game is over or false if it's not
     // Checks if it is even possible for someone to have won
     if(m_turns<5)
         return false;
+
+    // Checks if board is full
+    else if(m_turns==9)
+    {
+        std::cout << "Nobody wins !" << std::endl;
+        return true;
+    }
 
     // Checks each line from the bottom
     for(int i {0}; i<7; i+=3)
@@ -40,13 +48,6 @@ bool Game::checkEnd() // Returns true if the game is over or false if it's not
     else if((m_board[2]==m_board[4])&&(m_board[4]==m_board[6])&&(m_board[2]!=' '))
     {
         displayScoreAndWinner(m_board[2]);
-        return true;
-    }
-
-    // Checks if board is full
-    else if(m_turns==9)
-    {
-        std::cout << "Nobody wins !" << std::endl;
         return true;
     }
 
@@ -91,9 +92,9 @@ void Game::displayScoreAndWinner(char const &player) // Displays the score and t
     clear();
     displayBoard();
     std::cout << player << " wins !" << std::endl;
-    if(player=='X')m_scores[0]++;else m_scores[1]++; // Increases the score(m_scores) depending on which player won
-    std::cout << "X : " << m_scores[0] << " points." << std::endl;
-    std::cout << "O : " << m_scores[1] << " points." << std::endl;
+    if(player==m_letters[0])m_scores[0]++;else m_scores[1]++; // Increases the score(m_scores) depending on which player won
+    std::cout << m_letters[0] << " : " << m_scores[0] << " points." << std::endl;
+    std::cout << m_letters[1] << " : " << m_scores[1] << " points." << std::endl;
 }
 
 bool Game::keepPlaying() // Asks user if he wants to play a new game (conserving the current score)
@@ -137,4 +138,40 @@ void Game::clear() // Clears the terminal
     #else
         std::cout << "OS not suported for \"clear()\" function." << std::endl;
     #endif
+}
+
+std::array<char, 2> Game::init()
+{
+    std::cout << "Welcome to this game of tic-tac-toe !" << std::endl;
+    std::cout << "The board game is a grid, there are 9 positions layered just like a numpad.\nThe bottom left position is 1 and the top right one is 9." << std::endl;
+    std::array<char, 2> letters;
+    for(int i {0}; i<2; i++)
+    {
+        bool valid {false};
+        do
+        {
+            char letter;
+            std::cout << "Player n°" << i+1 << " has to choose a letter : ";
+            std::cin >> letter;
+            if((std::isalpha(letter))&&(toupper(letter)!=letters[0])&&(toupper(letter)!=letters[1])&&(!std::cin.fail()))
+            {
+                letters[i]=toupper(letter);
+                valid=true;
+            }
+            else
+            {
+                std::cout << "You have to input only a letter and it has to be different from the other player's." << std::endl;
+                valid=false;
+            }
+        } while (!valid);
+    }
+    return letters;
+}
+
+char Game::getPlayer()
+{
+    if(m_turns%2==0)
+        return m_letters[0];
+    else
+        return m_letters[1];
 }
