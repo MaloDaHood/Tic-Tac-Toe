@@ -10,6 +10,7 @@ class Game
     public:
         Game(std::array<int, 2> const &scores, std::array<char, 2> const &letters); // Constructor
 
+
         bool checkEnd(); // Checks if the game is over or not
         void increaseTurns(); // Increases m_turns by 1 each turn
         void displayBoard(); // Displays m_board
@@ -18,11 +19,12 @@ class Game
         std::array<int, 2> getScoreArray(); // Returns m_scores
         char getPlayer();
 
-        static std::array<char, 2> init();
+        static bool init();
+        static std::array<char, 2> getLetters();
         static bool keepPlaying(); // Asks user if he wants to play a new game (conserving the current score)
         static void inputError(int const &min, int const &max); // Signals input errors and clears buffer
         static void clear(); // Clears the terminal checking the current OS
-    private:
+    protected:
         // Array representing the playing board ([0]=1, [1]=2, ...)
         char m_board[9] {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
         int m_turns {0}; // Number of turns played in the current game (max=9)

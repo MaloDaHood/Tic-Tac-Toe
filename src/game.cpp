@@ -110,7 +110,7 @@ bool Game::keepPlaying() // Asks user if he wants to play a new game (conserving
         else
             valid=true;
     } while (!valid);
-    if(answer==1)return true;else return false;
+    return answer==1;
 }
 
 std::array<int, 2> Game::getScoreArray() // Returns m_scores 
@@ -140,10 +140,8 @@ void Game::clear() // Clears the terminal
     #endif
 }
 
-std::array<char, 2> Game::init()
+std::array<char, 2> Game::getLetters()
 {
-    std::cout << "Welcome to this game of tic-tac-toe !" << std::endl;
-    std::cout << "The board game is a grid, there are 9 positions layered just like a numpad.\nThe bottom left position is 1 and the top right one is 9." << std::endl;
     std::array<char, 2> letters;
     for(int i {0}; i<2; i++)
     {
@@ -174,4 +172,25 @@ char Game::getPlayer()
         return m_letters[0];
     else
         return m_letters[1];
+}
+
+bool Game::init()
+{
+    clear();
+    std::cout << "Welcome to this game of tic-tac-toe !" << std::endl;
+    std::cout << "The board game is a grid, there are 9 positions layered just like a numpad.\nThe bottom left position is 1 and the top right one is 9." << std::endl;
+    bool valid {false};
+    int answer;
+    do
+    {
+        std::cout << "Do you want to play aginst another person or the computer ?\n1. PvP\n2. PvC" << std::endl;
+        std::cin >> answer;
+        if(std::cin.fail()||answer<1||answer>2)
+        {
+            inputError(1, 2);
+            valid=false;
+        }
+        else valid=true;
+    }while(!valid);
+    return answer==1;
 }

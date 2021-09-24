@@ -1,0 +1,14 @@
+Classes :
+    .Game -> static
+    .Board
+        \Player
+        \CPU -- minimax
+
+Features :
+    .Choice of letter
+    .PvP
+    .PvC
+
+Possible Improvements :
+    .GUI -- SFML
+    .Bigger board  
