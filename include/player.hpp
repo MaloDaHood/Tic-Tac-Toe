@@ -3,7 +3,8 @@
 #include "board.hpp"
 #include <iostream>
 
-class Player : Board
+//class Board;
+class Player : public Board
 {
     public:
         void setLetter(int const &num, Player const &otherPlayer);

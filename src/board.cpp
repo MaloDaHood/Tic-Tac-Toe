@@ -22,9 +22,13 @@ void Board::draw()
 
 bool Board::setCase(int const &spot, char const &player)
 {
-    if(spot < 4)
+    if(spot == -1)
     {
-        if(m_board[0][spot-1] != ' ')
+        return false;
+    }
+    else if(spot < 4)
+    {
+        if(m_board[0][spot-1] == ' ')
         {
             m_board[0][spot-1] = player;
             return true;
@@ -37,7 +41,7 @@ bool Board::setCase(int const &spot, char const &player)
     }
     else if(spot < 7)
     {
-        if(m_board[1][spot-4] != ' ')
+        if(m_board[1][spot-4] == ' ')
         {
             m_board[1][spot-4] = player;
             return true;
@@ -50,7 +54,7 @@ bool Board::setCase(int const &spot, char const &player)
     }
     else
     {
-        if(m_board[2][spot-7] != ' ')
+        if(m_board[2][spot-7] == ' ')
         {
             m_board[2][spot-7] = player;
             return true;
@@ -110,7 +114,7 @@ bool Board::isGameOver()
     {
         return true;
     }
-    else if((m_board[0][2] == m_board[1][1])&&(m_board[1][1] == m_board[2][2])&&(m_board[2][0] != ' '))
+    else if((m_board[0][2] == m_board[1][1])&&(m_board[1][1] == m_board[2][0])&&(m_board[2][0] != ' '))
     {
         return true;
     }

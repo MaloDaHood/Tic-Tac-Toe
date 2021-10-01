@@ -14,13 +14,13 @@ void Player::setLetter(int const &num, Player const &otherPlayer)
             std::cout << "You have to input only one letter." << std::endl;
             valid = false;
         }
-        if(num == 2 && letter == otherPlayer.m_letter)
+        if(num == 2 && std::toupper(letter) == otherPlayer.m_letter)
         {
             std::cout << "It can't be the same as the other player's." << std::endl;
             valid = false;
         }
     } while (!valid);
-    m_letter = letter;
+    m_letter = std::toupper(letter);
 }
 
 char Player::getLetter()

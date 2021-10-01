@@ -1,8 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include "player.hpp"
-#include "cpu.hpp"
 
 class Board
 {

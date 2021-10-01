@@ -28,7 +28,18 @@ void playerVSplayer()
         while(!board.isGameOver())
         {
             char currentPlayer {Game::getCurrentPlayer(board.getTurns(), player1.getLetter(), player2.getLetter())};
-
+            board.draw();
+            int spot;
+            do
+            {
+                std::cout << currentPlayer << " > ";
+                std::cin >> spot;
+                if(std::cin.fail() || spot < 1 || spot > 9)
+                {
+                    Game::inputErrorInt(1, 9);
+                    spot = -1;
+                }
+            } while(!board.setCase(spot, currentPlayer));
             board.increaseTurns();
         }
     } while(Game::keepPlaying());
