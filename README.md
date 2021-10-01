@@ -16,7 +16,7 @@ or <br />
 
 **TO DO :**
 
-[ ] Make PvP
-[ ] Make PvC (random moves)
-[ ] Implement minimax algorithm
-[ ] Make a GUI with SFML
+- [ ] Make PvP <br />
+- [ ] Make PvC (random moves) <br />
+- [ ] Implement minimax algorithm <br />
+- [ ] Make a GUI with SFML <br />
