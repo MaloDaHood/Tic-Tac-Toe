@@ -37,3 +37,5 @@
 
 # VSCode stuff
 *.code-workspace
+
+/old

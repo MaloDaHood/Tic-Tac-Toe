@@ -1,111 +1,46 @@
 #include "../include/game.hpp"
+#include "../include/board.hpp"
+#include "../include/player.hpp"
 #include "../include/cpu.hpp"
 
-void pvp(std::array<int, 2> &scores, std::array<char, 2> &letters);
-void pvc(std::array<int, 2> &scores, std::array<char, 2> &letters);
+void playerVSplayer();
+void playerVScpu();
 
 int main()
 {
-    // scores[0]=X's score && scores[1]=O's score
-    std::array<int, 2> scores {0, 0};
-    std::array<char, 2> letters {' ', ' '};
+    //Game::clearScreen();
     if(Game::init())
-        pvp(scores, letters);
+        playerVSplayer();
     else
-        pvc(scores, letters);
+        playerVScpu();
     return 0;
 }
 
-void pvp(std::array<int, 2> &scores, std::array<char, 2> &letters)
+void playerVSplayer()
 {
-    letters=Game::getLetters();
-    do  // Loops while the user wants to keep playing
+    Player player1, player2;
+    player1.setLetter(1, player2);
+    player2.setLetter(2, player1);
+    while(Game::keepPlaying())
     {
-        Game game(scores, letters);
-        char player {game.getPlayer()}; // Current player
-        while(!game.checkEnd()) // Main game loop
+        Board board;
+        board.init();
+        while(!board.isGameOver())
         {
-            Game::clear();
-            game.displayBoard();
-            bool valid {false}; 
-            int place;
-            do // Loop to check if user input is valid
-            {
-                std::cout << player << " > ";
-                std::cin >> place;
-                if(std::cin.fail()||place<1||place>9)
-                    Game::inputError(1, 9);
-                else
-                    valid=true; 
-            }while(!valid||!game.setCase(place-1, player));
-            game.increaseTurns();
-            player=game.getPlayer();
+            char currentPlayer {Game::getCurrentPlayer(board.getTurns(), player1.getLetter(), player2.getLetter())};
+
+            board.increaseTurns();
         }
-        scores=game.getScoreArray(); // Saves m_scores before it's reset 
-    } while(Game::keepPlaying());
+    }
 }
 
-void pvc(std::array<int, 2> &scores, std::array<char, 2> &letters)
+void playerVScpu()
 {
-    letters=CPU::getLetters();
-    do
-    {
-        CPU cpu(scores, letters);
-        Game game(scores, letters);
-        char player {letters[0]};
-        while(!game.checkEnd())
-        {
-            /*if(cpu.isPlayer())
-            {
-                //Game::clear();
-                game.displayBoard();
-                bool valid {false}; 
-                int place;
-                do // Loop to check if user input is valid
-                {
-                    std::cout << player << " > ";
-                    std::cin >> place;
-                    if(std::cin.fail()||place<1||place>9)
-                        Game::inputError(1, 9);
-                    else
-                        valid=true; 
-                }while(!valid||!game.setCase(place-1, player));
-                game.increaseTurns();
-            }
-            else
-            {
-                //Game::clear();
-                game.displayBoard();
-                std::cout << "cpu" << std::endl;
-                game.setCase(cpu.findBestMove(), letters[1]);
-                game.increaseTurns();
-            }*/
-
-            //Game::clear();
-            game.displayBoard();
-            bool valid {false}; 
-            int place;
-            do // Loop to check if user input is valid
-            {
-                std::cout << player << " > ";
-                std::cin >> place;
-                if(std::cin.fail()||place<1||place>9)
-                    Game::inputError(1, 9);
-                else
-                    valid=true; 
-            }while(!valid||!game.setCase(place-1, player));
-            game.increaseTurns();
-            
-            if(game.checkEnd())
-                break;
-
-            //Game::clear();
-            game.displayBoard();
-            std::cout << "cpu : ";
-            game.setCase(cpu.findBestMove(), letters[1]);
-            game.increaseTurns();
-        }
-        scores=game.getScoreArray();
-    }while(Game::keepPlaying());
-    
+    Player player;
+    player.setLetter(1, player);
+    CPU cpu;
+    cpu.setLetter(player.getLetter());
+    Board board;
+    board.init();
+    char currentPlayer {Game::getCurrentPlayer(board.getTurns(), player.getLetter(), cpu.getLetter())};
 }

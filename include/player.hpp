@@ -1,15 +1,16 @@
 #pragma once
 
 #include "board.hpp"
+#include <iostream>
 
-class CPU : Board
+class Player : Board
 {
     public:
-        void setLetter(char const &player);
+        void setLetter(int const &num, Player const &otherPlayer);
         char getLetter();
         int getScore();
         void increaseScore();
     private:
-        char m_letter;
+        char m_letter {' '};
         int m_score {0};
 };
