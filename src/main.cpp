@@ -21,7 +21,7 @@ void playerVSplayer()
     Player player1, player2;
     player1.setLetter(1, player2);
     player2.setLetter(2, player1);
-    while(Game::keepPlaying())
+    do
     {
         Board board;
         board.init();
@@ -31,7 +31,7 @@ void playerVSplayer()
 
             board.increaseTurns();
         }
-    }
+    } while(Game::keepPlaying());
 }
 
 void playerVScpu()
