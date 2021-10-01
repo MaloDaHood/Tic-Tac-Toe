@@ -20,19 +20,46 @@ void Board::draw()
     std::cout << m_board[0][0] << '|' << m_board[0][1] << '|' << m_board[0][2] << std::endl;
 }
 
-void Board::setCase(int const &spot)
+bool Board::setCase(int const &spot, char const &player)
 {
     if(spot < 4)
     {
-        m_board[0][spot-1]='X';
+        if(m_board[0][spot-1] != ' ')
+        {
+            m_board[0][spot-1] = player;
+            return true;
+        }
+        else
+        {
+            std::cout << "You must choose a free spot." << std::endl;
+            return false;
+        }
     }
     else if(spot < 7)
     {
-        m_board[1][spot-4]='X';
+        if(m_board[1][spot-4] != ' ')
+        {
+            m_board[1][spot-4] = player;
+            return true;
+        }
+        else
+        {
+            std::cout << "You must choose a free spot." << std::endl;
+            return false;
+        }
     }
     else
     {
-        m_board[2][spot-7]='X';
+        if(m_board[2][spot-7] != ' ')
+        {
+            m_board[2][spot-7] = player;
+            return true;
+        }
+        else
+        {
+            std::cout << "You must choose a free spot." << std::endl;
+            return false;
+        }
     }
 }
 

@@ -9,7 +9,7 @@ class Board
     public:
         void init();
         void draw();
-        void setCase(int const &spot);
+        bool setCase(int const &spot, char const &player);
         int getTurns();
         void increaseTurns();
         bool isGameOver();
