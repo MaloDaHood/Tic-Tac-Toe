@@ -9,9 +9,9 @@
 
 **Compile and Run :**
 
-``$ make run`` <br />
-or <br />
-``$ g++ src/*.cpp -std=c++2a -o tic_tac_toe`` <br />
+``$ make run``  
+or  
+``$ g++ src/*.cpp -std=c++2a -o tic_tac_toe``  
 ``$ ./tic_tac_toe``
 
 ***
