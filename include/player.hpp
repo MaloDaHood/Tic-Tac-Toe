@@ -1,3 +1,9 @@
+/**
+ * @file player.hpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The header file for the Player class.
+ */
+
 #pragma once
 
 #include <iostream>

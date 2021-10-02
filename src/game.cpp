@@ -1,3 +1,9 @@
+/**
+ * @file game.cpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The source file for the Game class.
+ */
+
 #include "../include/game.hpp"
 
 /**

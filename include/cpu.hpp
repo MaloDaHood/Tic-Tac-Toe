@@ -1,3 +1,9 @@
+/**
+ * @file cpu.hpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The header file for the CPU class.
+ */
+
 #pragma once
 
 #include <array>

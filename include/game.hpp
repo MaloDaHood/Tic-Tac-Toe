@@ -1,3 +1,9 @@
+/**
+ * @file game.hpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The header file for the Game class.
+ */
+
 #pragma once
 
 #include <iostream>
@@ -5,7 +11,6 @@
 #include <array>
 #include "player.hpp"
 #include "cpu.hpp"
-
 
 class Game
 {

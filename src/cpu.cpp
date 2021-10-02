@@ -1,3 +1,9 @@
+/**
+ * @file cpu.cpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The source file for the CPU class.
+ */
+
 #include "../include/cpu.hpp"
 
 /**

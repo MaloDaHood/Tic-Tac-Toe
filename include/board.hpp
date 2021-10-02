@@ -1,3 +1,9 @@
+/**
+ * @file board.hpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The header file for the Board class.
+ */
+
 #pragma once
 
 #include <iostream>

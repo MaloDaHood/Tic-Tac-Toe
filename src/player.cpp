@@ -1,3 +1,9 @@
+/**
+ * @file player.cpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The source file for the Player class.
+ */
+
 #include "../include/player.hpp"
 
 /**

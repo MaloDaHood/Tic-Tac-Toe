@@ -1,3 +1,9 @@
+/**
+ * @file main.cpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The main game file.
+ */
+
 #include "../include/game.hpp"
 #include "../include/board.hpp"
 #include "../include/player.hpp"

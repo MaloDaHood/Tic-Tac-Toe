@@ -1,3 +1,9 @@
+/**
+ * @file board.cpp
+ * @author MaloDaHood (malomr2002@gmail.com)
+ * @brief The source file for the Board class.
+ */
+
 #include "../include/board.hpp"
 
 /**
