@@ -66,3 +66,63 @@ char Game::getCurrentPlayer(int const &turns, char const &player1, char const &p
     else
         return player2;
 }
+
+bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &turns, Player &player1, auto &player2)
+{
+    if(turns < 5)
+        return false;
+
+    else if(turns == 9)
+    {
+        std::cout << "It's a tie !" << std::endl;
+        return true;
+    }
+
+    for(int i {0}; i < 3; i++)
+    {
+        for(int j {0}; j < 3; j++)
+        {
+            if((board[i][j] == board[i][j+1])&&(board[i][j+1] == board[i][j+2])&&(board[i][j] != ' '))
+            {
+                displayWinnerAndScore(board[i][j], player1, player2);
+                return true;
+            }
+        }
+    }
+
+    for(int i {0}; i < 3; i++)
+    {
+        for(int j {0}; j < 3; j++)
+        {
+            if((board[i][j] == board[i+1][j])&&(board[i+1][j] == board[i+2][j])&&(board[i][j] != ' '))
+            {
+                displayWinnerAndScore(board[i][j], player1, player2);
+                return true;
+            }
+        }
+    }
+
+    if((board[0][0] == board[1][1])&&(board[1][1] == board[2][2])&&(board[0][0] != ' '))
+    {
+        displayWinnerAndScore(board[0][0], player1, player2);
+        return true;
+    }
+    else if((board[0][2] == board[1][1])&&(board[1][1] == board[2][0])&&(board[2][0] != ' '))
+    {
+        displayWinnerAndScore(board[0][2], player1, player2);
+        return true;
+    }
+
+    return false;
+}
+
+void Game::displayWinnerAndScore(char const &winner, Player &player1, auto &player2)
+{
+    std::cout << winner << " wins !" << std::endl;
+    if(winner == player1.getLetter())
+        player1.increaseScore();
+    else
+        player2.increaseScore();
+    std::cout << player1.getLetter() << " : " << player1.getScore() << " points" << std::endl;
+    std::cout << player2.getLetter() << " : " << player2.getScore() << " points" << std::endl;
+}

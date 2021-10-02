@@ -25,9 +25,9 @@ void playerVSplayer()
     {
         Board board;
         board.init();
-        while(!board.isGameOver())
+        while(!Game::isOver(board.getBoard(), board.getTurns(), player1, player2))
         {
-            char currentPlayer {Game::getCurrentPlayer(board.getTurns(), player1.getLetter(), player2.getLetter())};
+            char const currentPlayer {Game::getCurrentPlayer(board.getTurns(), player1.getLetter(), player2.getLetter())};
             board.draw();
             int spot;
             do
@@ -42,6 +42,7 @@ void playerVSplayer()
             } while(!board.setCase(spot, currentPlayer));
             board.increaseTurns();
         }
+        board.draw();
     } while(Game::keepPlaying());
 }
 
