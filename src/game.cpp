@@ -40,7 +40,7 @@ bool Game::keepPlaying()
 
 bool Game::init()
 {
-    clearScreen();
+    //clearScreen();
     std::cout << "Welcome to this game of tic-tac-toe !" << std::endl;
     std::cout << "The board game is a grid, there are 9 positions layered just like a numpad.\nThe bottom left position is 1 and the top right one is 9." << std::endl;
     bool valid {false};
@@ -67,7 +67,7 @@ char Game::getCurrentPlayer(int const &turns, char const &player1, char const &p
         return player2;
 }
 
-bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &turns, Player &player1, auto &player2)
+bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &turns, char &winner)
 {
     if(turns < 5)
         return false;
@@ -84,7 +84,7 @@ bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &tu
         {
             if((board[i][j] == board[i][j+1])&&(board[i][j+1] == board[i][j+2])&&(board[i][j] != ' '))
             {
-                displayWinnerAndScore(board[i][j], player1, player2);
+                winner = board[i][j];
                 return true;
             }
         }
@@ -96,7 +96,7 @@ bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &tu
         {
             if((board[i][j] == board[i+1][j])&&(board[i+1][j] == board[i+2][j])&&(board[i][j] != ' '))
             {
-                displayWinnerAndScore(board[i][j], player1, player2);
+                winner = board[i][j];
                 return true;
             }
         }
@@ -104,25 +104,46 @@ bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &tu
 
     if((board[0][0] == board[1][1])&&(board[1][1] == board[2][2])&&(board[0][0] != ' '))
     {
-        displayWinnerAndScore(board[0][0], player1, player2);
+        winner = board[0][0];
         return true;
     }
     else if((board[0][2] == board[1][1])&&(board[1][1] == board[2][0])&&(board[2][0] != ' '))
     {
-        displayWinnerAndScore(board[0][2], player1, player2);
+        winner = board[0][2];
         return true;
     }
 
     return false;
 }
 
-void Game::displayWinnerAndScore(char const &winner, Player &player1, auto &player2)
+void Game::displayWinnerAndScore(char const &winner, Player &player1, Player &player2)
 {
-    std::cout << winner << " wins !" << std::endl;
-    if(winner == player1.getLetter())
-        player1.increaseScore();
+    if(std::isspace(winner))
+        std::cout << "Nobody wins." << std::endl;
     else
-        player2.increaseScore();
+    {
+        std::cout << winner << " wins !" << std::endl;
+        if(winner == player1.getLetter())
+            player1.increaseScore();
+        else
+            player2.increaseScore();
+    }
     std::cout << player1.getLetter() << " : " << player1.getScore() << " points" << std::endl;
     std::cout << player2.getLetter() << " : " << player2.getScore() << " points" << std::endl;
+}
+
+void Game::displayWinnerAndScore(char const &winner, Player &player, CPU &cpu)
+{
+    if(std::isspace(winner))
+        std::cout << "Nobody wins." << std::endl;
+    else
+    {
+        std::cout << winner << " wins !" << std::endl;
+        if(winner == player.getLetter())
+            player.increaseScore();
+        else
+            cpu.increaseScore();
+    }
+    std::cout << player.getLetter() << " : " << player.getScore() << " points" << std::endl;
+    std::cout << cpu.getLetter() << " : " << cpu.getScore() << " points" << std::endl;
 }

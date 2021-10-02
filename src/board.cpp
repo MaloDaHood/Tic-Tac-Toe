@@ -1,6 +1,6 @@
 #include "../include/board.hpp"
 
-void Board::init()
+Board::Board()
 {
     for(int i {0}; i<3; i++)
     {

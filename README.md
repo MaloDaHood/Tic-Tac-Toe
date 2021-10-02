@@ -18,7 +18,7 @@ or <br />
 
 **TO DO :**
 
-- [ ] Make PvP <br />
+- [x] Make PvP <br />
 - [ ] Make PvC (random moves) <br />
 - [ ] Implement minimax algorithm <br />
 - [ ] Make a GUI with SFML <br />

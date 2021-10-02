@@ -1,8 +1,6 @@
 #pragma once
 
-#include "board.hpp"
-
-class CPU : Board
+class CPU
 {
     public:
         void setLetter(char const &player);

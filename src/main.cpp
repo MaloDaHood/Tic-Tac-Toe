@@ -24,8 +24,8 @@ void playerVSplayer()
     do
     {
         Board board;
-        board.init();
-        while(!Game::isOver(board.getBoard(), board.getTurns(), player1, player2))
+        char winner {' '};
+        while(!Game::isOver(board.getBoard(), board.getTurns(), winner))
         {
             char const currentPlayer {Game::getCurrentPlayer(board.getTurns(), player1.getLetter(), player2.getLetter())};
             board.draw();
@@ -43,6 +43,7 @@ void playerVSplayer()
             board.increaseTurns();
         }
         board.draw();
+        Game::displayWinnerAndScore(winner, player1, player2);
     } while(Game::keepPlaying());
 }
 
@@ -53,6 +54,5 @@ void playerVScpu()
     CPU cpu;
     cpu.setLetter(player.getLetter());
     Board board;
-    board.init();
     char currentPlayer {Game::getCurrentPlayer(board.getTurns(), player.getLetter(), cpu.getLetter())};
 }
