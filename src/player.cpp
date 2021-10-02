@@ -1,5 +1,11 @@
 #include "../include/player.hpp"
 
+/**
+ * @brief Asks the player for the letter he wants to use
+ * 
+ * @param num Whether it is the first or the second player
+ * @param otherPlayer Object representing the opponent player to the one choosing a letter
+ */
 void Player::setLetter(int const &num, Player const &otherPlayer)
 {
     char letter;
@@ -23,16 +29,30 @@ void Player::setLetter(int const &num, Player const &otherPlayer)
     m_letter = std::toupper(letter);
 }
 
+/**
+ * @brief Returns the player's letter
+ * 
+ * @return char 
+ */
 char Player::getLetter()
 {
     return m_letter;
 }
 
+/**
+ * @brief Returns the player's score
+ * 
+ * @return int 
+ */
 int Player::getScore()
 {
     return m_score;
 }
 
+/**
+ * @brief Increases the player's score by one
+ * 
+ */
 void Player::increaseScore()
 {
     m_score++;

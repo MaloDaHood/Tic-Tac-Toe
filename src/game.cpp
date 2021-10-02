@@ -1,5 +1,9 @@
 #include "../include/game.hpp"
 
+/**
+ * @brief Clears the teminal using OS specific commands 
+ * 
+ */
 void Game::clearScreen()
 {
     #ifdef _WIN32 // Checks for Windows systems
@@ -11,6 +15,12 @@ void Game::clearScreen()
     #endif
 }
 
+/**
+ * @brief Warns user about input error when asking for integers and clears the buffer
+ * 
+ * @param min The minimum integer asked
+ * @param max The maximum integer asked
+ */
 void Game::inputErrorInt(int const &min, int const &max)
 {
     // Output is adapted depending on what's expected (function reserved to numbers)
@@ -22,6 +32,12 @@ void Game::inputErrorInt(int const &min, int const &max)
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n'); // Clears the buffer
 }
 
+/**
+ * @brief Asks the player if he wants to play again
+ * 
+ * @return true if the player wants to play again
+ * @return false if the player doesn't want to play again
+ */
 bool Game::keepPlaying()
 {
     bool valid {false};
@@ -38,6 +54,12 @@ bool Game::keepPlaying()
     return answer==1;
 }
 
+/**
+ * @brief Starts the game and asks for game mode
+ * 
+ * @return true if game mode is PvP
+ * @return false if game mode is PvC
+ */
 bool Game::init()
 {
     //clearScreen();
@@ -59,6 +81,14 @@ bool Game::init()
     return answer==1;
 }
 
+/**
+ * @brief Returns the letter of the player currently playing
+ * 
+ * @param turns The number of turns played yet
+ * @param player1 Letter of the first player
+ * @param player2 Letter of the second player
+ * @return char 
+ */
 char Game::getCurrentPlayer(int const &turns, char const &player1, char const &player2)
 {
     if(turns%2 == 0)
@@ -67,6 +97,15 @@ char Game::getCurrentPlayer(int const &turns, char const &player1, char const &p
         return player2;
 }
 
+/**
+ * @brief Checks if the game is over.
+ * 
+ * @param board The game board
+ * @param turns The number of turns played yet
+ * @param winner The letter of the winning player, modified by reference
+ * @return true if the game is over
+ * @return false if the game is not over
+ */
 bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &turns, char &winner)
 {
     if(turns < 5)
@@ -116,6 +155,13 @@ bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &tu
     return false;
 }
 
+/**
+ * @brief Displays the score and the letter of the winner
+ * 
+ * @param winner The letter of the winning player
+ * @param player1 Object representing the first player
+ * @param player2 Object representing the second player
+ */
 void Game::displayWinnerAndScore(char const &winner, Player &player1, Player &player2)
 {
     if(std::isspace(winner))
@@ -132,6 +178,13 @@ void Game::displayWinnerAndScore(char const &winner, Player &player1, Player &pl
     std::cout << player2.getLetter() << " : " << player2.getScore() << " points" << std::endl;
 }
 
+/**
+ * @brief Displays the score and the letter of the winner
+ * 
+ * @param winner The letter of the winning player
+ * @param player Object representing the player
+ * @param cpu Object representing the computer
+ */
 void Game::displayWinnerAndScore(char const &winner, Player &player, CPU &cpu)
 {
     if(std::isspace(winner))
