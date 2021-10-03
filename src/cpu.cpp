@@ -48,6 +48,12 @@ void CPU::increaseScore()
     m_score++;
 }
 
+/**
+ * @brief Returns a random move that can be made
+ * 
+ * @param board The game board
+ * @return int 
+ */
 int CPU::randomMove(std::array<std::array<char, 3>, 3> board)
 {
     std::vector<int> freeSpots;
