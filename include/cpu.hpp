@@ -8,6 +8,7 @@
 
 #include <array>
 #include <iostream>
+#include <vector>
 
 class CPU
 {
@@ -16,6 +17,8 @@ class CPU
         char getLetter();
         int getScore();
         void increaseScore();
+        int randomMove(std::array<std::array<char, 3>, 3> board);
+
         int findBestMove(std::array<std::array<char, 3>, 3> board, char const &player);
         int minimax(std::array<std::array<char, 3>, 3> board, int depth, bool isMaximizingPlayer, char const &player);
         bool isMovesLeft(std::array<std::array<char, 3>, 3> board);

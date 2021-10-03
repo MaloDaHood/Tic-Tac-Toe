@@ -48,6 +48,28 @@ void CPU::increaseScore()
     m_score++;
 }
 
+int CPU::randomMove(std::array<std::array<char, 3>, 3> board)
+{
+    std::vector<int> freeSpots;
+    for(int i {0}; i<3; i++)
+    {
+        for(int j {0}; j<3; j++)
+        {
+            if(board[i][j] == ' ')
+            {
+                if(i == 0)
+                    freeSpots.push_back(j++);
+                else if(i == 1)
+                    freeSpots.push_back(i+j+3);
+                else
+                    freeSpots.push_back(i+j+5);
+            }
+        }
+    }
+    int randomIndex {rand()%freeSpots.size()};
+    return freeSpots[randomIndex];
+}
+
 int CPU::findBestMove(std::array<std::array<char, 3>, 3> board, char const &player)
 {
     int bestVal {-1000};

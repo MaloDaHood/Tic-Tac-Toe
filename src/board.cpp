@@ -32,6 +32,7 @@ void Board::draw()
     std::cout << m_board[1][0] << '|' << m_board[1][1] << '|' << m_board[1][2] << std::endl;
     std::cout << "-+-+-" << std::endl;
     std::cout << m_board[0][0] << '|' << m_board[0][1] << '|' << m_board[0][2] << std::endl;
+    std::cout << std::endl;
 }
 
 /**

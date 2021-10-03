@@ -96,7 +96,8 @@ void playerVScpu()
                 break;
             board.draw();
             currentPlayer = Game::getCurrentPlayer(board.getTurns(), player.getLetter(), cpu.getLetter());
-            board.setCase(cpu.findBestMove(board.getBoard(), player.getLetter()), cpu.getLetter());
+            board.setCase(cpu.randomMove(board.getBoard()), cpu.getLetter());
+            //board.setCase(cpu.findBestMove(board.getBoard(), player.getLetter()), cpu.getLetter());
             board.increaseTurns();
         }
         board.draw();
