@@ -3,16 +3,23 @@
 **Prerequisites :**
 
 - [G++](https://gcc.gnu.org/)  
-- [make](https://www.gnu.org/software/make/)  
+- [make (optional)](https://www.gnu.org/software/make/)  
 
 ***
 
 **Compile and Run :**
 
+- ## On Linux / UNIX
+
 ``$ make run``  
 or  
 ``$ g++ src/*.cpp -std=c++2a -o tic_tac_toe``  
 ``$ ./tic_tac_toe``
+
+- ## On Windows
+
+``$ g++ src/*.cpp -std=c++2a -o tic_tac_toe.exe``  
+``$ ./tic_tac_toe.exe``
 
 ***
 
