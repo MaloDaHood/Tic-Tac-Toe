@@ -66,7 +66,7 @@ int CPU::randomMove(std::array<std::array<char, 3>, 3> board)
             }
         }
     }
-    int randomIndex {rand()%freeSpots.size()};
+    int randomIndex {rand()%int(freeSpots.size())};
     return freeSpots[randomIndex];
 }
 
