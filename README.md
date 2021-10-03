@@ -25,7 +25,7 @@ or
 
 ***
 
-## **TO DO :**
+## **To Do :**
 
 - [x] Make PvP  
 - [x] Make PvC (random moves)  
