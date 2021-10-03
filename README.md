@@ -1,5 +1,7 @@
 # Tic-Tac-Toe
 
+This project is a training to OOP and to basic AI implementation.  
+
 ## **Prerequisites :**
 
 - [G++](https://gcc.gnu.org/)  
