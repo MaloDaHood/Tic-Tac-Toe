@@ -5,7 +5,7 @@ This project is a training to OOP and to basic AI implementation.
 ## **Prerequisites :**
 
 - [G++](https://gcc.gnu.org/)  
-- [make (optional)](https://www.gnu.org/software/make/)  
+- [make](https://www.gnu.org/software/make/) (optional)
 
 ***
 
