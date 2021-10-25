@@ -125,36 +125,34 @@ bool Game::isOver(std::array<std::array<char, 3>, 3> const &board, int const &tu
 
     for(int i {0}; i < 3; i++)
     {
-        for(int j {0}; j < 3; j++)
+        if((board[i][0] == board[i][1])&&(board[i][1] == board[i][2])&&(board[i][0] != ' '))
         {
-            if((board[i][j] == board[i][j+1])&&(board[i][j+1] == board[i][j+2])&&(board[i][j] != ' '))
-            {
-                winner = board[i][j];
-                return true;
-            }
+            winner = board[i][0];
+            std::cout << "ligne" << std::endl;
+            return true;
         }
     }
 
     for(int i {0}; i < 3; i++)
     {
-        for(int j {0}; j < 3; j++)
+        if((board[0][i] == board[1][i])&&(board[1][i] == board[2][i])&&(board[0][i] != ' '))
         {
-            if((board[i][j] == board[i+1][j])&&(board[i+1][j] == board[i+2][j])&&(board[i][j] != ' '))
-            {
-                winner = board[i][j];
-                return true;
-            }
+            winner = board[0][i];
+            std::cout << "colonne" << std::endl;
+            return true;
         }
     }
 
     if((board[0][0] == board[1][1])&&(board[1][1] == board[2][2])&&(board[0][0] != ' '))
     {
         winner = board[0][0];
+        std::cout << "diagonale1" << std::endl;
         return true;
     }
     else if((board[0][2] == board[1][1])&&(board[1][1] == board[2][0])&&(board[2][0] != ' '))
     {
         winner = board[0][2];
+        std::cout << "diagonale2" << std::endl;
         return true;
     }
 

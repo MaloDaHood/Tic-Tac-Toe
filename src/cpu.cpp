@@ -64,7 +64,7 @@ int CPU::randomMove(std::array<std::array<char, 3>, 3> board)
             if(board[i][j] == ' ')
             {
                 if(i == 0)
-                    freeSpots.push_back(j++);
+                    freeSpots.push_back(j+1);
                 else if(i == 1)
                     freeSpots.push_back(i+j+3);
                 else
